@@ -1,6 +1,8 @@
 <template>
 	<div id="tabBar">
 
+		<Header/>
+
 		<el-tabs 
 		v-model="routesss" 
 		type="card" 
@@ -13,21 +15,27 @@
 		    :label="item.title"
 		    :name="item.name"
 		  >
-		    {{item.content}}
 		  </el-tab-pane>
 		</el-tabs>
-
 
 	</div>
 </template>
 
 <script type="">
 	import {mapGetters,mapActions} from 'vuex'
+
+	import Header from '@/components/Header'
 	export default{
 		name:'tabBar',
 		data() {
 	      return {
 	      }
+	    },
+	    components:{
+			Header:Header,
+		},
+	    mounted(){
+	    	document.querySelector('.el-tabs__header').style.margin = 0
 	    },
 	    computed:{
 	    	...mapGetters(['newTabName','tabData']),
@@ -57,9 +65,10 @@
 		        	tabData = []
 		        }else {
 		        	for(let i in tabData){
-		        		// 本条active
-		        		if(targetName == activeName){
-		        			if(tabData[i].name == targetName){
+		        		
+		        		if(tabData[i].name == targetName){
+			        		if(targetName == activeName){
+			        		// 本条active	
 		        				// 顺序排第一，显示后一个
 		        				if (i==0) {
 		        					this.tabActive(tabData[1])
@@ -70,13 +79,12 @@
 		        				// 删除本条
 		        				tabData.splice(i,1)
 		        				break
-		        			}
 
-				        }else{
-				        // 非active，直接删除
-				        	// 删除本条
-		        			tabData.splice(i,1)
-		        			break
+					        }else{
+					        // 非active，直接删除本条
+			        			tabData.splice(i,1)
+			        			break
+					        }
 				        }
 			        }
 		        }

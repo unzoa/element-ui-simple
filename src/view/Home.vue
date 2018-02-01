@@ -1,15 +1,19 @@
 <template>
 	<div id="home">
-		<Menu class="_fl"></Menu>
+
+		<Menu class="_fl" @menuWidth="menuWidth"/>
 
 		<TabBar/>
 
-		<keep-alive>
-          <router-view v-if="$route.meta.keepAlive"/>
-        </keep-alive>
+		<div class="_fl mainBody" :style="{'width':bodyWidth}">
+			<keep-alive>
+	          <router-view v-if="$route.meta.keepAlive"/>
+	        </keep-alive>
 
-        <!-- 这里是不被缓存的视图组件，比如 page3 -->
-        <router-view v-if="!$route.meta.keepAlive"/>
+	        <!-- 这里是不被缓存的视图组件，比如 page3 -->
+	        <router-view v-if="!$route.meta.keepAlive"/>
+
+        </div>
 
 	</div>
 </template>
@@ -22,20 +26,30 @@
 		name:'home',
 		data(){
 			return {
-
+				bodyWidth:'calc(100% - 200px)',
 			}
 		},
 		components:{
 			Menu:Menu,
 			TabBar:tabBar
 		},
-		computed:{
-		},
 		methods:{
-			
+			menuWidth(val){
+				this.bodyWidth = 'calc(100% - '+val+')'
+			}
 		},
-		mounted(){
-
-		}
 	}
 </script>
+
+<style>
+	#home,#Menu{
+		height: 100%;
+	}
+	.mainBody{
+		height: calc(100% - 41px - 50px);
+		overflow: scroll;
+	}
+	#Header{
+		height: 50px;
+	}
+</style>
