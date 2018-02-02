@@ -134,7 +134,6 @@
 							componentTitle = j.title
 							break
 						}
-
 					}
 				}
 				// 增加tabBar，唤醒vuex actions addTab

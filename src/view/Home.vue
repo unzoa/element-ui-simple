@@ -34,6 +34,7 @@
 			TabBar:tabBar
 		},
 		methods:{
+			// menu传过来的width，计算mainBody的width
 			menuWidth(val){
 				this.bodyWidth = 'calc(100% - '+val+')'
 			}

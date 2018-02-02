@@ -40,11 +40,28 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 ### Router
 
 ```bash
-	|-app
-	|-|-home
-	|-|-|-pages
-	|-|-login
-	|-|-welcome
+|-app
+|-|-home
+|-|-|-pages
+|-|-login
+|-|-welcome
 ```
+
+### Frame
+```bash
+| s |    TabBar    |
+| i |--header--tab-|
+| d |--------------|
+| e |			   |
+| b |   mainBody   |
+| a |			   |
+| r |--------------|
+```
+
 ### Home 实现sideMenu & TabBar
 
+	vuex 
+	state存储tabBarArr，activeTab
+	addTab增加tab
+	delTab删除tab，但是唤醒的组件仍然live
+	changeActiveTabName同步唤醒组件
